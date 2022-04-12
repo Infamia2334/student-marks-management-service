@@ -1,9 +1,11 @@
 package io.infamia2334.marksmanager.models;
 
+import java.util.Set;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
+@Document(collection = "users")
 public class User {
     @Id
     private String id;
@@ -11,13 +13,13 @@ public class User {
     private String mobile;
     private String email;
     private String password;
-    private String address;
-    private String role;
+    private Address address;
+    private Set<Role> role;
 
     public User() {
     }
 
-    public User(String id, String name, String mobile, String email, String password, String address, String role) {
+    public User(String id, String name, String mobile, String email, String password, Address address, Set<Role> role) {
         this.id = id;
         this.name = name;
         this.mobile = mobile;
@@ -68,19 +70,32 @@ public class User {
         this.password = password;
     }
 
-    public String getAddress() {
+    public Address getAddress() {
         return this.address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 
-    public void setRole(String role) {
+    public void setRole(Set<Role> role) {
         this.role = role;
     }
 
-    public String getRole() {
+    public Set<Role> getRole() {
         return this.role;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+            " id='" + getId() + "'" +
+            ", name='" + getName() + "'" +
+            ", mobile='" + getMobile() + "'" +
+            ", email='" + getEmail() + "'" +
+            ", password='" + getPassword() + "'" +
+            ", address='" + getAddress() + "'" +
+            ", role='" + getRole() + "'" +
+            "}";
     }
 }
