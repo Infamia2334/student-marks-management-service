@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import io.infamia2334.marksmanager.models.Result;
 import io.infamia2334.marksmanager.models.Student;
 import io.infamia2334.marksmanager.repository.StudentRepository;
 
@@ -27,5 +28,15 @@ public class StudentService {
 
     public void createStudent(Student newStudent) {
         studentRepository.save(newStudent);
+    }
+
+    public void addNewResult(String id, Result updatedMarks) {
+        Optional<Student> student = studentRepository.findById(id);
+        if(student.isEmpty()) {
+            throw new IllegalStateException("Student not found!");
+        }
+        Student studentData = student.get();
+        studentData.getResults().add(updatedMarks);
+        studentRepository.save(studentData);
     }
 }
