@@ -19,6 +19,7 @@ public class Student {
     private Address address;
     @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate dob;
+    private String gender;
     private String email;
     private String password;
     private List<Result> results;
@@ -29,12 +30,13 @@ public class Student {
     public Student() {
     }
 
-    public Student(String id, String name, String mobile, Address address, LocalDate dob, String email, String password, List<Result> results) {
+    public Student(String id, String name, String mobile, Address address, LocalDate dob, String gender, String email, String password, List<Result> results) {
         this.id = id;
         this.name = name;
         this.mobile = mobile;
         this.address = address;
         this.dob = dob;
+        this.gender = gender;
         this.email = email;
         this.password = password;
         this.results = results;
@@ -80,6 +82,15 @@ public class Student {
         this.dob = dob;
     }
 
+    public String getGender() {
+        return this.gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+
     public String getEmail() {
         return this.email;
     }
@@ -116,6 +127,7 @@ public class Student {
             ", mobile='" + getMobile() + "'" +
             ", address='" + getAddress() + "'" +
             ", dob='" + getDob() + "'" +
+            ", gender='" +getGender() + "'" +
             ", email='" + getEmail() + "'" +
             ", password='" + getPassword() + "'" +
             ", age='" + getAge() + "'" +
